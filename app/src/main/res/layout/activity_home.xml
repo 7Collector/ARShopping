@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:layout_margin="12dp"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".HomeActivity">
+
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/ibutton_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_person_24"
+                android:contentDescription="@string/profile_picture_contentdes" />
+
+            <Spinner
+                android:id="@+id/cat_spinner"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:padding="6dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_shopping_bag_24"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/ibutton_bag"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/bag_contentdes" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/bg_search_bar"
+            android:id="@+id/search_bar"
+            android:layout_marginTop="20dp"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginStart="12sp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_placeholder" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/holder_categories"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:id="@+id/tv_categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/categories_placeholder" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_categories"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_category" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/holder_new_arrivals"
+            app:layout_constraintTop_toBottomOf="@id/holder_categories"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:id="@+id/tv_new_arrival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/new_arrivals_placeholder" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/item_product"
+                android:id="@+id/rv_new"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:layout_below="@id/tv_new_arrival"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/holder_top_selling"
+            app:layout_constraintTop_toBottomOf="@id/holder_new_arrivals"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:id="@+id/tv_top_selling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/top_selling_placeholder" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/item_product_staggered"
+                android:id="@+id/rv_top"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                android:layout_below="@id/tv_top_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

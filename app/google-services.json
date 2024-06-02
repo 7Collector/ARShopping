@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850652149337",
+    "project_id": "ar-shopping-c429a",
+    "storage_bucket": "ar-shopping-c429a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850652149337:android:2ab4e6a03549030831a348",
+        "android_client_info": {
+          "package_name": "iitr.collector.shopping.ar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi1w_bCYX8tvizVZs83xy2SYpwVg7KULU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

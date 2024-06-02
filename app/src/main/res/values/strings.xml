@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AR Shopping</string>
+    <string name="search_placeholder">Search....</string>
+    <string name="categories_placeholder">Categories</string>
+    <string name="new_arrivals_placeholder">New Arrivals</string>
+    <string name="top_selling_placeholder">Top Selling</string>
+    <string name="profile_picture_contentdes">profile_picture</string>
+    <string name="bag_contentdes">bag</string>
+    <string name="default_web_client_id">850652149337-uentascbdqans71canmuuuttpmcslacs.apps.googleusercontent.com</string>
+    <string name="empty_bag">It\'s empty here. Add some items to bag to checkout.</string>
+    <string name="empty_orders">It\'s empty here. Checkout some items to see them here.</string>
+</resources>
