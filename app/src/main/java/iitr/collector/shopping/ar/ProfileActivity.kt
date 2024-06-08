@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
-import iitr.collector.shopping.ar.adapters.BagAdapter
 import iitr.collector.shopping.ar.adapters.OrdersAdapter
 import iitr.collector.shopping.ar.data.Product
 
@@ -61,6 +60,7 @@ class ProfileActivity : AppCompatActivity() {
                     val images = document.getString("images") ?: ""
                     val cat = document.getString("cat") ?: ""
                     val model = document.getString("model") ?: ""
+                    val type = document.getString("type") ?: "normal"
                     val price = document.getDouble("price") ?: 0.0
                     val discount = document.getDouble("discount") ?: 0.0
                     val mrp = document.getDouble("mrp") ?: 0.0
@@ -82,7 +82,8 @@ class ProfileActivity : AppCompatActivity() {
                         stock,
                         popularity,
                         cat,
-                        model
+                        model,
+                        type
                     )
                     dates += arriving
                     orders += np

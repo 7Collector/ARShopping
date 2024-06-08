@@ -20,6 +20,10 @@ playServicesAuth = "21.2.0"
 coreSplashscreen = "1.2.0-alpha01"
 okhttp = "5.0.0-alpha.14"
 sceneformUx = "1.17.1"
+rendering = "1.17.1"
+tasksVision = "0.20230731"
+sceneview = "2.2.0"
+arsceneview = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +45,10 @@ play-services-auth = { group = "com.google.android.gms", name = "play-services-a
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 sceneform-ux = { group = "com.google.ar.sceneform.ux", name = "sceneform-ux", version.ref = "sceneformUx" }
+rendering = { group = "com.google.ar.sceneform", name = "rendering", version.ref = "rendering" }
+tasks-vision = { group = "com.google.mediapipe", name = "tasks-vision", version.ref = "tasksVision" }
+sceneview = { group = "io.github.sceneview", name = "sceneview", version.ref = "sceneview" }
+arsceneview = { group = "io.github.sceneview", name = "arsceneview", version.ref = "arsceneview" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

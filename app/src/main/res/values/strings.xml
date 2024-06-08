@@ -9,4 +9,5 @@
     <string name="default_web_client_id">850652149337-uentascbdqans71canmuuuttpmcslacs.apps.googleusercontent.com</string>
     <string name="empty_bag">It\'s empty here. Add some items to bag to checkout.</string>
     <string name="empty_orders">It\'s empty here. Checkout some items to see them here.</string>
+    <string name="point_your_phone_down">Point your phone down.</string>
 </resources>

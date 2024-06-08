@@ -19,11 +19,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.ar.core.ArCoreApk
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.firestore
 import iitr.collector.shopping.ar.adapters.ViewPagerAdapter
 import iitr.collector.shopping.ar.ar.NormalARActivity
-import iitr.collector.shopping.ar.data.Product
+import iitr.collector.shopping.ar.ar.PoseLandmarkActivity
 import org.json.JSONArray
 
 class ViewActivity : AppCompatActivity() {
@@ -93,7 +92,7 @@ class ViewActivity : AppCompatActivity() {
         tvAddToBag.setOnClickListener {
             addToBag()
         }
-        mArButton.setOnClickListener { ar() }
+        mArButton.setOnClickListener { ar(intent.getStringExtra("name")?:"Product Name",intent.getStringExtra("model")?:"",intent.getStringExtra("type") ?: "normal") }
     }
 
     private fun setNavigationBarColor(colorResId: Int) {
@@ -107,9 +106,10 @@ class ViewActivity : AppCompatActivity() {
         Log.d("images", intent.getStringExtra("images").toString())
         tvDescription.text = intent.getStringExtra("description")
         tvName.text = intent.getStringExtra("name")
-        tvPrice.text = "₹ "+intent.getDoubleExtra("price", 99.0).toString()
+        tvPrice.text = "₹ " + intent.getDoubleExtra("price", 99.0).toString()
         ratingBar.rating = intent.getDoubleExtra("rating", 4.4).toFloat()
     }
+
     private fun addToBag() {
         val db = Firebase.firestore
         val auth = FirebaseAuth.getInstance()
@@ -148,6 +148,7 @@ class ViewActivity : AppCompatActivity() {
             Log.w("addToBag", "User not logged in")
         }
     }
+
     private fun maybeEnableArButton() {
         ArCoreApk.getInstance().checkAvailabilityAsync(this) { availability ->
             if (availability.isSupported) {
@@ -160,9 +161,25 @@ class ViewActivity : AppCompatActivity() {
         }
     }
 
-    private fun ar() {
-        val i = Intent(this, NormalARActivity::class.java)
-        startActivity(i)
+    private fun ar(title: String, file: String, type: String) {
+        if (type == "normal" && file.isNotEmpty()) {
+            val i = Intent(this,NormalARActivity::class.java)
+            i.putExtra("model",file)
+            startActivity(i)
+            /*val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+            val intentUri: Uri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                .appendQueryParameter("file", file)
+                .appendQueryParameter("mode", "ar_only")
+                .appendQueryParameter("title", title)
+                .build()
+            sceneViewerIntent.data = intentUri
+            sceneViewerIntent.setPackage("com.google.ar.core")
+            startActivity(sceneViewerIntent)*/
+        } else {
+            val i = Intent(this, PoseLandmarkActivity::class.java)
+            startActivity(i)
+            //Snackbar.make(relativeLayout, "AR is not available for this product.", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
 }

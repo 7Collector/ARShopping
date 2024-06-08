@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import iitr.collector.shopping.ar.data.Product
 import iitr.collector.shopping.ar.R
 import iitr.collector.shopping.ar.ViewActivity
+import iitr.collector.shopping.ar.data.Product
 
 class OrdersAdapter(private val data: List<Product>, private val dates: List<String>) : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
 
@@ -33,6 +33,8 @@ class OrdersAdapter(private val data: List<Product>, private val dates: List<Str
             intents.putExtra("category", product.category)
             intents.putExtra("rating", product.rating)
             intents.putExtra("image", product.image)
+            intents.putExtra("model", product.model)
+            intents.putExtra("type", product.type)
             intents.putExtra("images", product.images)
             intents.putExtra("price", product.price)
             intents.putExtra("discount", product.discount)

@@ -14,7 +14,8 @@ class Product(
     val stock: Int,
     val popularity: Int,
     val cat: String,
-    val model: String
+    val model: String,
+    val type: String = "normal"
 ) {
     fun toMap(arriving: String): Map<String, Any> {
         return mapOf(

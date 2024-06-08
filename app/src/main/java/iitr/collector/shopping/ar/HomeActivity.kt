@@ -1,7 +1,6 @@
 package iitr.collector.shopping.ar
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,12 +18,10 @@ import com.google.ar.core.ArCoreApk
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.toObject
-import iitr.collector.shopping.ar.data.Category
-import iitr.collector.shopping.ar.data.Product
 import iitr.collector.shopping.ar.adapters.CategoriesAdapter
 import iitr.collector.shopping.ar.adapters.ProductAdapter
-import org.json.JSONArray
+import iitr.collector.shopping.ar.data.Category
+import iitr.collector.shopping.ar.data.Product
 
 class HomeActivity : AppCompatActivity() {
 
@@ -120,6 +117,7 @@ class HomeActivity : AppCompatActivity() {
                 val images = document.getString("images") ?: ""
                 val cat = document.getString("cat") ?: ""
                 val model = document.getString("model") ?: ""
+                val type = document.getString("type") ?: "normal"
                 val price = document.getDouble("price") ?: 0.0
                 val discount = document.getDouble("discount") ?: 0.0
                 val mrp = document.getDouble("mrp") ?: 0.0
@@ -127,7 +125,7 @@ class HomeActivity : AppCompatActivity() {
                 val stock = document.getLong("stock")?.toInt() ?: 0
                 val popularity = document.getLong("popularity")?.toInt() ?: 0
 
-                val np = Product(id, name, category, rating, image, images, price, discount, mrp, description, stock, popularity, cat, model)
+                val np = Product(id, name, category, rating, image, images, price, discount, mrp, description, stock, popularity, cat, model, type)
 
                 dataNew += np
             }
@@ -145,6 +143,7 @@ class HomeActivity : AppCompatActivity() {
                 val image = document.getString("image") ?: ""
                 val cat = document.getString("cat") ?: ""
                 val model = document.getString("model") ?: ""
+                val type = document.getString("type") ?: "normal"
                 val images = document.getString("images") ?: ""
                 val price = document.getDouble("price") ?: 0.0
                 val discount = document.getDouble("discount") ?: 0.0
@@ -153,7 +152,7 @@ class HomeActivity : AppCompatActivity() {
                 val stock = document.getLong("stock")?.toInt() ?: 0
                 val popularity = document.getLong("popularity")?.toInt() ?: 0
 
-                val tp = Product(id, name, category, rating, image, images, price, discount, mrp, description, stock, popularity, cat, model)
+                val tp = Product(id, name, category, rating, image, images, price, discount, mrp, description, stock, popularity, cat, model, type)
 
                 dataTop += tp
             }

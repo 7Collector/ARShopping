@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import iitr.collector.shopping.ar.data.Product
 import iitr.collector.shopping.ar.R
 import iitr.collector.shopping.ar.ViewActivity
+import iitr.collector.shopping.ar.data.Product
 
 class BagAdapter(private val data: List<Product>) : RecyclerView.Adapter<BagAdapter.ViewHolder>() {
 
@@ -32,6 +32,8 @@ class BagAdapter(private val data: List<Product>) : RecyclerView.Adapter<BagAdap
             intents.putExtra("category", product.category)
             intents.putExtra("rating", product.rating)
             intents.putExtra("image", product.image)
+            intents.putExtra("model", product.model)
+            intents.putExtra("type", product.type)
             intents.putExtra("images", product.images)
             intents.putExtra("price", product.price)
             intents.putExtra("discount", product.discount)

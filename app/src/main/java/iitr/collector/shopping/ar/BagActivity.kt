@@ -110,6 +110,7 @@ class BagActivity<Activity> : AppCompatActivity(), PaymentResultWithDataListener
                         val image = document.getString("image") ?: ""
                         val images = document.getString("images") ?: ""
                         val cat = document.getString("cat") ?: ""
+                        val type = document.getString("type") ?: "normal"
                         val model = document.getString("model") ?: ""
                         val price = document.getDouble("price") ?: 0.0
                         amount+=price;
@@ -132,7 +133,8 @@ class BagActivity<Activity> : AppCompatActivity(), PaymentResultWithDataListener
                             stock,
                             popularity,
                             cat,
-                            model
+                            model,
+                            type
                         )
                         productsInBag += np
                     }
