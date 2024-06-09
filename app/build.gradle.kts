@@ -46,7 +46,6 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.okhttp)
-    implementation(libs.tasks.vision)
     implementation(libs.arsceneview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
