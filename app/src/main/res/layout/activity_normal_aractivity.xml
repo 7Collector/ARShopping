@@ -10,6 +10,7 @@
         android:id="@+id/sceneView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -47,10 +48,124 @@
         android:shadowRadius="8"
         android:text="@string/point_your_phone_down"
         android:textColor="@android:color/white"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        app:layout_constraintBottom_toTopOf="@id/lowConstarint"
+        android:id="@+id/iv_increase_size"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/bg_white_ripple"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_increase_size"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <ImageView
+        app:layout_constraintBottom_toTopOf="@id/lowConstarint"
+        app:layout_constraintStart_toEndOf="@id/iv_increase_size"
+        android:id="@+id/iv_decrease_size"
+        android:background="@drawable/bg_white_ripple"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_decrease_size"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:layout_toStartOf="@id/iv_increase_size"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <ImageView
+        app:layout_constraintEnd_toStartOf="@id/iv_rotate_right"
+        app:layout_constraintBottom_toTopOf="@id/lowConstarint"
+        android:id="@+id/iv_rotate_left"
+        android:background="@drawable/bg_white_ripple"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_rotate_left"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <ImageView
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lowConstarint"
+        android:id="@+id/iv_rotate_right"
+        android:background="@drawable/bg_white_ripple"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_rotate_right"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lowConstarint"
+        android:paddingTop="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="24dp"
+        android:background="@drawable/bg_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:layout_marginTop="12dp"
+            android:lines="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tv_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Product name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            android:layout_marginStart="12dp"
+            android:layout_below="@id/tv_product_name"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:text="$ 69"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            android:id="@+id/tv_add_bag"
+            android:layout_alignParentEnd="true"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_black_ripple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to Bag"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

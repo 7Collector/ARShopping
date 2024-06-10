@@ -9,13 +9,13 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import com.google.ar.core.ArCoreApk
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -136,7 +136,8 @@ class ViewActivity : AppCompatActivity() {
 
             bagRef.add(product)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Added!", Toast.LENGTH_SHORT).show()
+                    val view = findViewById<View>(R.id.main)
+                    Snackbar.make(view, "Added!", Snackbar.LENGTH_SHORT).show()
                     Log.d("addToBag", "Product added to bag successfully")
                     val documentId = it.id
                     bagRef.document(documentId).update("id", documentId)
@@ -165,6 +166,8 @@ class ViewActivity : AppCompatActivity() {
         if (type == "normal" && file.isNotEmpty()) {
             val i = Intent(this,NormalARActivity::class.java)
             i.putExtra("model",file)
+            i.putExtra("name",title)
+            i.putExtra("price","₹ " + intent.getDoubleExtra("price", 99.0).toString())
             startActivity(i)
             /*val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
             val intentUri: Uri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()

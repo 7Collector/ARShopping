@@ -2,8 +2,11 @@ package iitr.collector.shopping.ar.ar
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
@@ -18,6 +21,7 @@ import io.github.sceneview.ar.arcore.getUpdatedPlanes
 import io.github.sceneview.ar.getDescription
 import io.github.sceneview.ar.node.AnchorNode
 import io.github.sceneview.math.Position
+import io.github.sceneview.math.Rotation
 import io.github.sceneview.node.ModelNode
 import kotlinx.coroutines.launch
 
@@ -25,6 +29,14 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
     lateinit var sceneView: ARSceneView
     lateinit var loadingView: View
     lateinit var instructionText: TextView
+    private lateinit var tvName: TextView
+    private lateinit var tvPrice: TextView
+    private lateinit var tvAddToBag: TextView
+    private lateinit var ivIncreaseSize: ImageView
+    private lateinit var ivDecreaseSize: ImageView
+    private lateinit var ivRotateLeft: ImageView
+    private lateinit var ivRotateRight: ImageView
+    private lateinit var modelNode:ModelNode
 
     var isLoading = false
         set(value) {
@@ -40,7 +52,6 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
             }
         }
 
-    var anchorNodeView: View? = null
 
     var trackingFailureReason: TrackingFailureReason? = null
         set(value) {
@@ -51,9 +62,7 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
         }
 
     fun updateInstructions() {
-        instructionText.text = trackingFailureReason?.let {
-            it.getDescription(this)
-        } ?: if (anchorNode == null) {
+        instructionText.text = trackingFailureReason?.getDescription(this) ?: if (anchorNode == null) {
             getString(R.string.point_your_phone_down)
         } else {
             null
@@ -64,12 +73,28 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
         super.onCreate(savedInstanceState)
 
         window.apply {
-            decorView.visibility = View.GONE
+            navigationBarColor = Color.parseColor("#F3F3F3")
             statusBarColor = Color.TRANSPARENT
+            decorView.visibility = View.GONE
         }
         enableEdgeToEdge()
+        tvName = findViewById(R.id.tv_product_name)
+        tvPrice = findViewById(R.id.tv_product_price)
+        tvAddToBag = findViewById(R.id.tv_add_bag)
+        tvName.text = intent.getStringExtra("name")
+        tvPrice.text = intent.getStringExtra("price")
         instructionText = findViewById(R.id.instructionText)
         loadingView = findViewById(R.id.loadingView)
+        ivIncreaseSize = findViewById(R.id.iv_increase_size)
+        ivDecreaseSize = findViewById(R.id.iv_decrease_size)
+        ivRotateLeft = findViewById(R.id.iv_rotate_left)
+        ivRotateRight = findViewById(R.id.iv_rotate_right)
+
+        ivIncreaseSize.setOnClickListener { modifyModelSize(1.1f) }
+        ivDecreaseSize.setOnClickListener { modifyModelSize(0.9f) }
+        ivRotateLeft.setOnClickListener { rotateModel(-15.0f) }
+        ivRotateRight.setOnClickListener { rotateModel(15.0f) }
+
         sceneView = findViewById<ARSceneView?>(R.id.sceneView).apply {
             lifecycle = this@NormalARActivity.lifecycle
             planeRenderer.isEnabled = true
@@ -94,7 +119,10 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
                 this@NormalARActivity.trackingFailureReason = reason
             }
         }
-//        sceneView.viewNodeWindowManager = ViewAttachmentManager(context, this).apply { onResume() }
+        tvAddToBag.setOnClickListener {
+            Toast.makeText(this,"Add to bag here", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
     fun addAnchorNode(anchor: Anchor) {
@@ -104,8 +132,10 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
                     isEditable = true
                     lifecycleScope.launch {
                         isLoading = true
-                        buildModelNode()?.let { addChildNode(it) }
-//                        buildViewNode()?.let { addChildNode(it) }
+                        buildModelNode()?.let {
+                            addChildNode(it)
+                            modelNode=it
+                        }
                         isLoading = false
                     }
                     anchorNode = this
@@ -116,21 +146,41 @@ class NormalARActivity : AppCompatActivity(R.layout.activity_normal_aractivity) 
     suspend fun buildModelNode(): ModelNode? {
         val a = intent.getStringExtra("model")
         if (a != null) {
+            Log.d("Model",a)
+        };
+        if (a != null) {
+            isLoading = true
             sceneView.modelLoader.loadModelInstance(
                 a
             )?.let { modelInstance ->
+                isLoading=false
                 return ModelNode(
                     modelInstance = modelInstance,
-                    // Scale to fit in a 0.5 meters cube
                     scaleToUnits = 0.5f,
-                    // Bottom origin instead of center so the model base is on floor
                     centerOrigin = Position(y = -0.5f)
                 ).apply {
                     isEditable = true
                 }
+
             }
         }
         return null
+    }
+    private fun modifyModelSize(factor: Float) {
+        modelNode?.let { node ->
+            node.scale *= factor
+        }
+    }
+
+    private fun rotateModel(angle: Float) {
+        modelNode?.let { node ->
+            val currentRotation = node.rotation
+            node.rotation = Rotation(
+                x = currentRotation.x,
+                y = currentRotation.y + angle,
+                z = currentRotation.z
+            )
+        }
     }
 
 //    suspend fun buildViewNode(): ViewNode? {

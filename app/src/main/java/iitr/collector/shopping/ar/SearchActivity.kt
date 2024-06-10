@@ -1,10 +1,12 @@
 package iitr.collector.shopping.ar
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -14,6 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -48,6 +51,8 @@ class SearchActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.progress_bar_search)
         recyclerView.adapter = ProductAdapter(emptyList())
+        recyclerView.layoutManager = GridLayoutManager(this,2)
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (intent.hasExtra("category")) {
             performCategorySearch(intent.getStringExtra("category") ?: "")
         } else {
@@ -58,6 +63,7 @@ class SearchActivity : AppCompatActivity() {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                     (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
                 ) {
+                    inputMethodManager.hideSoftInputFromWindow(searchEditText.windowToken, 0)
                     performSearch()
                     true
                 } else {

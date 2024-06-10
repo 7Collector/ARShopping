@@ -23,7 +23,7 @@ class ProductAdapter(private val data: List<Product>) : RecyclerView.Adapter<Pro
         val product = data[position]
         val imageUrl = product.image
         holder.name.text = product.name
-        holder.price.text = product.price.toString()
+        holder.price.text = "₹"+product.price.toString()
         Glide.with(holder.itemView).load(imageUrl).into(holder.mainImage)
         holder.itemView.setOnClickListener {
             val intents = Intent(holder.itemView.context, ViewActivity::class.java)
