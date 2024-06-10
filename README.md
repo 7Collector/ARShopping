@@ -50,7 +50,9 @@ My role was crucial in ensuring that our app not only looks great but also provi
 - **General Improvements**: Assisted in refining various aspects of the app to enhance performance and usability, ensuring a better user experience.
 
 My contributions were aimed at making the purchasing process smooth and reliable for our users."
+## Video Demo
 
+Here's the link to demo video. [Video Demo](https://drive.google.com/file/d/1o_mon4dPsIR0BBDBEeubO_ZNF3v6PSgY/view?usp=drivesdk)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
