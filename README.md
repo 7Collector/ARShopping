@@ -17,6 +17,7 @@ Welcome to the **AR Shopping App** – your gateway to the next generation of sh
   - [Rakshit (Product & AR)](#rakshit-product--ar)
   - [Rajesh Choudhary (Design & Auth)](#rajesh-choudhary-design--auth)
   - [Praveen Roj (Razorpay and Improvements)](#praveen-roj-razorpay-and-improvements)
+- [Demo](#demo)
 - [License](#license)
 
 ## Team Contribution
