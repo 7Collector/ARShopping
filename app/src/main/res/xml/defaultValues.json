@@ -13,8 +13,8 @@
   "oAuthRedirectUrl": "https://quest-iitr.web.app/oauth/redirect",
   "channeliClientID": "Wt7wYt7hSZC7DkZSmYjTmCDDxnjA4GHcGw38uJ4B",
   "normalTimeAdd": "12",
-  "slotPreLunchTimeAdd": "7",
-  "slotPreLunchWednesdayTimeAdd": "9",
+  "slotPreLunchTimeAdd": "12",
+  "slotPreLunchWednesdayTimeAdd": "12",
   "defaultBioConfig": "HI, I'm ",
   "progressDialogTitle": "Please wait"
 }
