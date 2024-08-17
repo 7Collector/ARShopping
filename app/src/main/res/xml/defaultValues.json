@@ -14,7 +14,7 @@
   "channeliClientID": "Wt7wYt7hSZC7DkZSmYjTmCDDxnjA4GHcGw38uJ4B",
   "normalTimeAdd": "12",
   "slotPreLunchTimeAdd": "12",
-  "slotPreLunchWednesdayTimeAdd": "0",
-  "defaultBioConfig": "HI, I'm ",
+  "slotPreLunchWednesdayTimeAdd": "12",
+  "defaultBioConfig": "Hi, I'm ",
   "progressDialogTitle": "Please wait"
 }
