@@ -16,5 +16,10 @@
   "slotPreLunchTimeAdd": "12",
   "slotPreLunchWednesdayTimeAdd": "12",
   "defaultBioConfig": "Hi, I'm ",
-  "progressDialogTitle": "Please wait"
+  "progressDialogTitle": "Please wait",
+  "CRUrl","https://quest-backend-pi.vercel.app/api/cr",
+  "BRUrl","https://quest-backend-pi.vercel.app/api/br",
+  "academicLoginUrl", "https://timetable.iitr.ac.in:4400/api/userlogin/newStudentLogin",
+  "session", "2024-25",
+  "semester", "Spring",
 }
